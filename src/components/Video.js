@@ -8,15 +8,15 @@ function Video({
   time,
   verified,
   children,
-  deleteVideo,
-  editVideo
+  editVideo,
+  dispatch
 }) {
   console.log("render Video");
 
   return (
     <>
       <div className="container">
-        <button className="close" onClick={() => deleteVideo(id)}>X</button>
+        <button className="close" onClick={() => dispatch({ type: "DELETE", payload: id })}>X</button>
         <button className="edit" onClick={() => editVideo(id)}>Edit</button>
         <div className="pic">
           <img

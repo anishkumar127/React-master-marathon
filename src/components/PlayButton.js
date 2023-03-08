@@ -6,7 +6,6 @@ function PlayButton({ message, children, onPlay, onPause }) {
 
   const [playing, setPlaying] = useState(false);
   function handleClick(e) {
-    // console.log(e)
     e.stopPropagation();
 
     if (playing) onPause();
