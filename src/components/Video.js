@@ -8,12 +8,16 @@ function Video({
   time,
   verified,
   children,
+  deleteVideo,
+  editVideo
 }) {
   console.log("render Video");
 
   return (
     <>
       <div className="container">
+        <button className="close" onClick={() => deleteVideo(id)}>X</button>
+        <button className="edit" onClick={() => editVideo(id)}>Edit</button>
         <div className="pic">
           <img
             src={`https://picsum.photos/id/${id}/160/90`}
@@ -28,7 +32,7 @@ function Video({
           {views} views <span>.</span> {time}
         </div>
         <div>{children}</div>
-      </div>
+      </div >
     </>
   );
 }
