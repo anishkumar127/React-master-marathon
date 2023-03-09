@@ -1,9 +1,11 @@
-import {  useReducer, useState } from "react";
+import { useReducer, useState } from "react";
 import "./App.css";
 import AddVideo from "./components/AddVideo";
 import videoDB from "./data/data";
 import VideoList from "./components/VideoList";
 import ThemeContext from "./context/ThemeContext";
+import VideosContext from "./context/VideosContext";
+import VideoDispatchContext from "./context/VideoDispatchContext";
 function App() {
   console.log("render App");
   const [editableVideo, setEditableVideo] = useState(null);
@@ -33,13 +35,15 @@ function App() {
   // const themeContext = useContext(ThemeContext)
   return (
     <ThemeContext.Provider value={mode}>
-      <div className={`App ${mode}`} onClick={() => console.log("App")}>
-        <button onClick={() => setMode(mode === 'darkMode' ? 'lightMode' : 'darkMode')}>{mode === 'darkMode' ? <span class="material-symbols-outlined">light_mode</span> : <span class="material-symbols-outlined">dark_mode</span>}
-
-        </button>
-        <AddVideo dispatch={dispatch} editableVideo={editableVideo}></AddVideo>
-        <VideoList dispatch={dispatch} editVideo={editVideo} videos={videos}></VideoList>
-      </div>
+      <VideosContext.Provider value={videos}>
+        <VideoDispatchContext.Provider value={dispatch}>
+          <div className={`App ${mode}`} onClick={() => console.log("App")}>
+            <button onClick={() => setMode(mode === 'darkMode' ? 'lightMode' : 'darkMode')}>{mode === 'darkMode' ? <span className="material-symbols-outlined">light_mode</span> : <span className="material-symbols-outlined">dark_mode</span>} </button>
+            <AddVideo  editableVideo={editableVideo}></AddVideo>
+            <VideoList  editVideo={editVideo} ></VideoList>
+          </div>
+        </VideoDispatchContext.Provider>
+      </VideosContext.Provider>
     </ThemeContext.Provider>
 
   );
