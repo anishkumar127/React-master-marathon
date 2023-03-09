@@ -9,24 +9,36 @@
   float: left;
   position: relative;
 }
+.container.darkMode {
+  color: white;
+}
+.container.lightMode {
+  color: black;
+}
 .pic img {
   width: 100%;
 }
 .title {
   font-weight: bold;
   margin-bottom: 1em;
-  color: white;
 }
-.channel,
-.views {
+.darkMode .channel,
+.darkMode .views {
   font-size: small;
   color: #ccc;
+  margin-bottom: 0.2em;
+}
+.lightMode .channel,
+.lightMode .views {
+  font-size: small;
+  color: black;
   margin-bottom: 0.2em;
 }
 
 .views span {
   padding: 0 0.5em;
 }
+
 .close {
   position: absolute;
   right: 0;
