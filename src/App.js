@@ -6,6 +6,7 @@ import VideoList from "./components/VideoList";
 import ThemeContext from "./context/ThemeContext";
 import VideosContext from "./context/VideosContext";
 import VideoDispatchContext from "./context/VideoDispatchContext";
+import Counter from './components/Counter'
 function App() {
   console.log("render App");
   const [editableVideo, setEditableVideo] = useState(null);
@@ -38,9 +39,10 @@ function App() {
       <VideosContext.Provider value={videos}>
         <VideoDispatchContext.Provider value={dispatch}>
           <div className={`App ${mode}`} onClick={() => console.log("App")}>
+            <Counter />
             <button onClick={() => setMode(mode === 'darkMode' ? 'lightMode' : 'darkMode')}>{mode === 'darkMode' ? <span className="material-symbols-outlined">light_mode</span> : <span className="material-symbols-outlined">dark_mode</span>} </button>
-            <AddVideo  editableVideo={editableVideo}></AddVideo>
-            <VideoList  editVideo={editVideo} ></VideoList>
+            <AddVideo editableVideo={editableVideo}></AddVideo>
+            <VideoList editVideo={editVideo} ></VideoList>
           </div>
         </VideoDispatchContext.Provider>
       </VideosContext.Provider>
