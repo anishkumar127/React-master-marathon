@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import VideoDispatchContext from "../context/VideoDispatchContext";
+import useVideoDispatch from "../hooks/VideoDispatch";
 import "./Video.css";
 
 function Video({
@@ -13,7 +12,7 @@ function Video({
   editVideo
 }) {
   console.log("render Video");
-  const dispatch = useContext(VideoDispatchContext)
+  const dispatch = useVideoDispatch();
   return (
     <>
       <div className="container">
