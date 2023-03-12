@@ -15,14 +15,6 @@ function Video({
   console.log("render Video");
   const dispatch = useVideoDispatch();
 
-  useEffect(() => {
-    const idx = setInterval(() => {
-      console.log('video playing..', id);
-    }, 3000);
-    return () => {
-      clearInterval(idx);
-    }
-  }, [id])
   return (
     <>
       <div className="container">
