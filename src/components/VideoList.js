@@ -2,7 +2,7 @@ import Video from "./Video";
 import PlayButton from "./PlayButton";
 import useVideoContext from "../hooks/VideoContext";
 import axios from "axios";
-import { useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import useVideoDispatch from "../hooks/VideoDispatch";
 function VideoList({ editVideo }) {
   const videos = useVideoContext();
@@ -18,6 +18,17 @@ function VideoList({ editVideo }) {
     getVideos();
   }, [dispatch])
 
+  const Play = useCallback(() => console.log('Playing..'), [])
+  const Pause = useCallback(() => console.log('Pause..'), [])
+  const memoButton = useMemo(() => {
+    <PlayButton
+      onPlay={Play}
+      onPause={Pause}
+    >
+      {/* {video.title} */}
+      Play
+    </PlayButton>
+  }, [Play, Pause])
   return (
     <>
       {videos.map((video) => (
@@ -31,12 +42,7 @@ function VideoList({ editVideo }) {
           id={video.id}
           editVideo={editVideo}
         >
-          <PlayButton
-            onPlay={() => console.log('Playing..', video.title)}
-            onPause={() => console.log('Paused..', video.title)}
-          >
-            {video.title}
-          </PlayButton>
+          {memoButton}
         </Video>
       ))}
     </>

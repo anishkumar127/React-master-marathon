@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from "react";
 
 function Counter() {
   console.log("render Counter");
-  const [number, setNumber] = useState(40);
+  const [number, setNumber] = useState(5);
 
   function handleClick(e) {
     e.stopPropagation();

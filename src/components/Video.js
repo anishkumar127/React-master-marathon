@@ -1,7 +1,8 @@
+import { memo } from "react";
 import useVideoDispatch from "../hooks/VideoDispatch";
 import "./Video.css";
 
-function Video({
+const Video = memo(function Video({
   title,
   id,
   channel = "Coder Dost",
@@ -36,6 +37,6 @@ function Video({
       </div >
     </>
   );
-}
+})
 
 export default Video;
