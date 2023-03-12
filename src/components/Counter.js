@@ -1,25 +1,24 @@
-import { useRef, useState } from "react";
-
+import { useMemo, useState } from "react";
+function fib(n) {
+  if (n === 1 || n === 2) return 1;
+  return fib(n - 1) + fib(n - 2);
+}
 function Counter() {
   console.log("render Counter");
-  const [number, setNumber] = useState(0);
-
-  let num = useRef(0);
+  const [number, setNumber] = useState(40);
 
   function handleClick(e) {
     e.stopPropagation();
-
     setNumber((number) => number + 1);
     setNumber((number) => number + 1);
     setNumber((number) => number + 1);
-
-    num.current++;
-    console.log(num.current);
   }
+
+  const fibMemorized = useMemo(() => fib(number), [number]);
 
   return (
     <>
-      <h1 style={{ color: "white" }}>{number} ||  {num.current}</h1>
+      <h1 style={{ color: "white" }}>{number} | {fibMemorized}</h1>
       <button onClick={handleClick}>Add</button>
     </>
   );

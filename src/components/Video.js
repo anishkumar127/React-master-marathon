@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import useVideoDispatch from "../hooks/VideoDispatch";
 import "./Video.css";
 
