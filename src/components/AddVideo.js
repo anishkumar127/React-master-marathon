@@ -31,13 +31,6 @@ function AddVideo({ editableVideo }) {
             setVideo(editableVideo)
         }
         inputRef.current.focus();
-        // inputRef.current.value = "temp value";
-        // inputRef.current.placeholder = "";
-        // "type here".split('').forEach((char, i) => {
-        //     setTimeout(() => {
-        //         inputRef.current.placeholder = inputRef.current.placeholder + char;
-        //     }, 200 * i);
-        // })
     }, [editableVideo])
     return (
         <form>
