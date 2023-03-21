@@ -1,4 +1,4 @@
-import { useCallback, useReducer, useState } from "react";
+import { useCallback, useReducer, useRef, useState } from "react";
 import "./App.css";
 import AddVideo from "./components/AddVideo";
 import VideoList from "./components/VideoList";
@@ -10,6 +10,8 @@ function App() {
   console.log("render App");
   const [editableVideo, setEditableVideo] = useState(null);
   const [mode, setMode] = useState('darkMode');
+  const inputRef = useRef(null);
+
   function videoReducer(videos, action) {
     switch (action.type) {
       case 'LOAD':
@@ -33,15 +35,16 @@ function App() {
   const editVideo = useCallback(function editVideo(id) {
     setEditableVideo(videos.find(video => video.id === id));
   }, [videos])
-  
+
   return (
     <ThemeContext.Provider value={mode}>
       <VideosContext.Provider value={videos}>
         <VideoDispatchContext.Provider value={dispatch}>
           <div className={`App ${mode}`} onClick={() => console.log("App")}>
             <Counter />
+            <button onClick={() => { inputRef.current.ChangedFocus() }}>Focus</button>
             <button onClick={() => setMode(mode === 'darkMode' ? 'lightMode' : 'darkMode')}>{mode === 'darkMode' ? <span className="material-symbols-outlined">light_mode</span> : <span className="material-symbols-outlined">dark_mode</span>} </button>
-            <AddVideo editableVideo={editableVideo}></AddVideo>
+            <AddVideo ref={inputRef} editableVideo={editableVideo}></AddVideo>
             <VideoList editVideo={editVideo} ></VideoList>
           </div>
         </VideoDispatchContext.Provider>
